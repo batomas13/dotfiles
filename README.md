@@ -8,7 +8,7 @@
 ## i3 scripts:
 ### [i3-alt-tab](https://github.com/yoshimoto/i3-alt-tab.py): 
     use for alt+tab through workspaces
-## [i3-alternating-layout](https://github.com/olemartinorg/i3-alternating-layout): 
+### [i3-alternating-layout](https://github.com/olemartinorg/i3-alternating-layout): 
     vertical and horizontal panels
     
 ## [rofi-power-menu:](https://github.com/jluttine/rofi-power-menu) 
