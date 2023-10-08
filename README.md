@@ -22,7 +22,7 @@
     - nord theme with only three rows
 
 ## i3: 
-    config to use one monitor and dual monitor[^1] 
+    config to use one monitor and dual monitor[^1]. 
 
 ## Polybar:
     the icon for the workspaces are specific to one and dual monitor
