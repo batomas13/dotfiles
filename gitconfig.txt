@@ -1,0 +1,12 @@
+[user]
+	name = batomas13
+	email = tcoto2003@gmail.com
+
+[alias]
+	st = status
+	ca = commit -a -m
+	ps = push
+	pl = pull
+	cl = clone
+[credential]
+	helper = cache

@@ -1,0 +1,147 @@
+" Be improved
+set nocompatible
+" Required
+filetype off
+
+call plug#begin('~/.config/nvim')
+    Plug 'VundleVim/Vundle.vim'
+    " Better Syntax Support
+    Plug 'sheerun/vim-polyglot'
+    " File Explorer
+    Plug 'scrooloose/NERDTree'
+    "Add icons to NERDTree
+    Plug 'ryanoasis/vim-devicons'
+    " Auto pairs for '(' '[' '{'
+    Plug 'jiangmiao/auto-pairs'
+    "Menu for compelte
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "Pre-view and search files
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    "Move things
+    Plug 'nvim-treesitter/nvim-treesitter'
+    "Theme
+    Plug 'arcticicestudio/nord-vim'
+    "Debuggin c/c++/python
+    Plug 'puremourning/vimspector'
+    "Adds indentation guides to all lines
+    Plug 'lukas-reineke/indent-blankline.nvim'
+    "Highlighting other uses of the word under the cursor
+    Plug 'RRethy/vim-illuminate'
+    "todo Highlight and search
+    Plug 'folke/todo-comments.nvim'
+    "Status bar
+    Plug 'nvim-lualine/lualine.nvim'
+    "Devicons for status bar
+    Plug 'kyazdani42/nvim-web-devicons'
+call plug#end()
+
+"Inicia NERDTree, si un archivo es especificado, mueve el cursor hacia la ventana
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+" Toggle and focus nerdtree
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
+
+"Al salir de vim si NERDTree es la unica ventana que falta
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+"NERDTree muestra archivos ocultos
+let NERDTreeShowHidden=1
+
+set title  " Muestra el nombre del archivo en la ventana de la terminal
+set number  " Muestra los números de las líneas
+set number relativenumber
+set mouse=a  " Permite la integración del mouse (seleccionar texto, mover el cursor)
+
+set nowrap  " No dividir la línea si es muy larga
+
+set cursorline  " Resalta la línea actual
+set colorcolumn=120  " Muestra la columna límite a 120 caracteres
+
+" Indentación a 2 espacios
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set shiftround
+set expandtab  " Insertar espacios en lugar de <Tab>s
+
+
+set hidden  " Permitir cambiar de buffers sin tener que guardarlos
+
+set ignorecase  " Ignorar mayúsculas al hacer una búsqueda
+set smartcase  " No ignorar mayúsculas si la palabra a buscar contiene mayúsculas
+
+set termguicolors  " Activa true colors en la terminal
+colorscheme nord " Nombre del tema
+
+let g:mapleader = ' ' "Definir espacio como la tecla líder.
+
+nnoremap <leader>g :w<CR>  " Guardar con <líder> + g
+
+nnoremap <leader>e :e $MYVIMRC<CR>  " Abrir el archivo init.vim con <líder> + e
+
+" Usar <líder> + c para copiar al portapapeles
+vnoremap <leader>c "+c
+nnoremap <leader>c "+c
+
+" Usar <líder> + x para cortar al portapapeles
+vnoremap <leader>x "+x
+nnoremap <leader>x "+x
+
+" Usar <líder> + p para pegar desde el portapapeles
+nnoremap <leader>v "+p
+vnoremap <leader>v "+p
+
+"Abrir Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+
+" Moverse al buffer siguiente con <líder> + l
+nnoremap <leader>l :bnext<CR>
+
+" Moverse al buffer anterior con <líder> + j
+nnoremap <leader>j :bprevious<CR>
+
+" Cerrar el buffer actual con <líder> + q
+nnoremap <leader>q :bdelete<CR>
+
+" usar portapapeles del sistema
+set clipboard=unnamedplus
+
+" Sustituir palabras
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+"usar zz para cerrar y guardar
+nnoremap zz :wq<CR>
+
+"Usar zq para cerrar sin guardar
+nnoremap zq :q!<CR>
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Teclas para Debuggin
+nmap <F5> <Plug>VimspectorContinue
+nmap <F6> <Plug>VimspectorToggleBreakpoint
+nmap <F7> <Plug>VimspectorStop
+nmap <F8> <Plug>VimspectorRestart
+
+" Activa el todo plugin
+lua require("todo-comments").setup {}
+
+" Activa la status bar
+lua << END
+require('lualine').setup()
+END

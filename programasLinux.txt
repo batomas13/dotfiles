@@ -1,0 +1,20 @@
+Apps:
+  Rofi
+  Polybar
+  i3:
+     i3-alternating-layout
+     i3-alt-tab.py
+     rofi-power-menu
+
+  External hardware rgb control:
+    ckb-next
+
+  Browser:
+    Chrome
+    Firefox
+
+  File manager:
+    Dolphin
+
+  Telegram
+  git
