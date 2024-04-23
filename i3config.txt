@@ -70,7 +70,7 @@ bindsym Mod4+Shift+q kill
 #Rofi Binds
 bindsym Control+space exec "rofi -show drun"
 bindsym Mod4+Tab exec "rofi -show window"
-bindsym Control+Mod1+Delete exec "rofi -show power-menu -modi power-menu:$HOME/rofi-power-menu/rofi-power-menu"
+bindsym Control+Mod1+Delete exec "rofi -show power-menu -modi power-menu:$HOME/rofi-power-menu/rofi-power-menu -theme $HOME/rofi-power-menu/nord.rasi"
 # A more modern dmenu replacement is rofi:
 # bindsym Mod4+d exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -219,7 +219,7 @@ bindsym Mod4+r mode "resize"
 
 #Open Apps
 bindsym Mod4+1 exec --no-startup-id google-chrome
-bindsym Mod4+3 exec --no-startup-id dolphin
+bindsym Mod4+3 exec --no-startup-id thunar
 
 # class                 border  bground text    indicator child_border
 client.focused          #4C566A #4C566A #FFFFFF #3B4252  #3B4252
